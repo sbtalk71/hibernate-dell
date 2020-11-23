@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.demo.hibernate">
+
+	<class name="Emp" table="EMP">
+		<id name="empId" type="integer" column="EMPNO">
+			<generator class="assigned" />
+		</id>
+		<property name="empName" type="string" column="NAME" />
+		<property name="city" type="string" column="ADDRESS" />
+		<property name="salary" type="double" column="SALARY" />
+	</class>
+
+</hibernate-mapping>
