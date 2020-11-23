@@ -24,9 +24,15 @@ public class Query1 {
 			
 			//Query<Emp> query=session.createQuery("select e from Emp e");
 			Query<Emp> query=session.createQuery("select e from Emp e where e.empId between 107 and 112");
-			
+			query.setCacheable(true);
+			query.setCacheRegion("SimpelQueries");
 			List<Emp>empList=query.getResultList();
 			empList.stream().forEach(e->System.out.println(e.getEmpId()+" "+e.getEmpName()+" "+e.getSalary()));
+			
+			//sf.getCache().evictQueryRegion("SimpelQueries");
+			System.out.println("----pass2-------");
+			List<Emp>empList1=query.getResultList();
+			empList1.stream().forEach(e->System.out.println(e.getEmpId()+" "+e.getEmpName()+" "+e.getSalary()));
 			
 		} catch (HibernateException e) {
 			//tx.rollback();

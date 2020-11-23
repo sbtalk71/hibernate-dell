@@ -1,5 +1,6 @@
 package com.demo.hibernate;
 
+import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -11,6 +12,9 @@ import javax.persistence.NamedNativeQuery;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 @NamedQueries({ 
 		@NamedQuery(name = "query1", query = "select e from Emp e where e.empId between 107 and 112"),
@@ -26,6 +30,8 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "MYEMP")
+@Cacheable
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Emp {
 	@Id
 	@Column(name = "EMPNO")

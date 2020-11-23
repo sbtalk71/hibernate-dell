@@ -3,17 +3,21 @@ package com.demo.hibernate;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.Cacheable;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
 @Entity
 @Table(name="MYDEPT")
+@Cacheable
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE,region = "DEPT_Cache")
 public class Dept {
 	@Id
 	@Column(name="DNO")
@@ -25,6 +29,8 @@ public class Dept {
 	@Column(name="MANAGER")
 	private String manager;
 
+	
+	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 	@OneToMany(cascade = CascadeType.ALL,mappedBy = "dept")
 	//@JoinColumn(name="DNO")
 	private Set<Emp> emps=new HashSet<>();
