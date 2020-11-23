@@ -17,8 +17,10 @@ public class ManyToManyMain {
 
 			Student s1=new Student();
 			s1.setStudentName("John");
+			
 			Student s2=new Student();
 			s2.setStudentName("Harry");
+			
 			Student s3=new Student();
 			s3.setStudentName("James");
 			

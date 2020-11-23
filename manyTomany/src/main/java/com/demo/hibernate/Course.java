@@ -21,7 +21,7 @@ public class Course {
 	private String courseName;
 
 	@ManyToMany
-	@JoinTable(name = "STU_COURSE", joinColumns = {
+	@JoinTable(name = "STUDENT_COURSE", joinColumns = {
 			@JoinColumn(name = "COURSEID") }, inverseJoinColumns = @JoinColumn(name = "STUDENTID"))
 	private Set<Student> studentList = new HashSet<Student>();
 
