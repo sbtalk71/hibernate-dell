@@ -17,7 +17,7 @@ import org.hibernate.cfg.Configuration;
 
 import com.demo.hibernate.Emp;
 
-public class CriteriaQuery1 {
+public class CriteriaQuery2 {
 
 	public static void main(String[] args) {
 		Configuration cfg = new Configuration().configure();
@@ -26,15 +26,14 @@ public class CriteriaQuery1 {
 		Transaction tx = session.beginTransaction();
 		try {
 			
-			
 			CriteriaBuilder cb=session.getCriteriaBuilder();
 			CriteriaQuery<Emp> cq=cb.createQuery(Emp.class);
 			Root<Emp> empRoot=cq.from(Emp.class);
 			
-			cq.select(empRoot).where(cb.equal(empRoot.get("empId"),109));
-			TypedQuery<Emp> cquery=session.createQuery(cq);
+			//cq.select(empRoot).where(cb.equal(empRoot.get("empId"),107 ));
+			cq.select(empRoot).where(cb.between(empRoot.get("salary"), 50000, 90000));
 			
-			cquery.getResultList().forEach(e->System.out.println(e.getEmpName()));
+			session.createQuery(cq).getResultList().forEach(e->System.out.println(e.getEmpName()+" "+e.getSalary()));
 			
 		} catch (HibernateException e) {
 			//tx.rollback();
