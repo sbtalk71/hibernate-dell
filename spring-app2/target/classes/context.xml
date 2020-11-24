@@ -6,7 +6,7 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
 
-	<bean id="empDao" class="com.demo.spring.dao.impl.EmpDaoMockImpl" />
+	<bean id="empDao" class="com.demo.spring.dao.impl.EmpDaoMockImpl2" />
 
 	<bean id="empService" class="com.demo.spring.EmpService">
 		<property name="dao" ref="empDao" />

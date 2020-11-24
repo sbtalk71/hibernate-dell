@@ -12,6 +12,7 @@ public class EmpService {
 	}
 
 	public String registerEmp(int id, String name, String city, double sal) {
+		System.out.println(dao.getClass().getName());
 		String response = dao.save(new Emp(id, name, city, sal));
 		return response;
 	}
