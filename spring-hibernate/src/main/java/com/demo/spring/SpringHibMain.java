@@ -5,20 +5,20 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.dao.support.DaoSupport;
 
 import com.demo.spring.dao.EmpDao;
-import com.demo.spring.dao.EmpDaoJPAImpl;
+import com.demo.spring.dao.EmpDaoHibImpl;
 import com.demo.spring.entity.Emp;
 
-public class SpringJpaMain {
+public class SpringHibMain {
 
 	public static void main(String[] args) {
 	
-		ApplicationContext ctx= new AnnotationConfigApplicationContext(JpaAppConfig.class);
+		ApplicationContext ctx= new AnnotationConfigApplicationContext(HibAppConfig.class);
 
 			
-		EmpDao dao=(EmpDao)ctx.getBean("empDaoJPAImpl");
+		EmpDao dao=(EmpDao)ctx.getBean("empDaoHibImpl");
 		
 		System.out.println(dao.getClass().getName());
-		//dao.save(new Emp(401, "Achal", "Bangalore", 65000));
+		dao.save(new Emp(402, "Nandi", "Bangalore", 65000));
 	}
 
 }
