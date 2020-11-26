@@ -1,26 +1,12 @@
 package com.demo.spring.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
-@Entity
-@Table(name="EMP")
 @XmlRootElement
 public class Emp {
-	@Id
-	@Column(name="EMPNO")
 	private int empId;
-	
-	@Column(name="NAME")
 	private String empName;
-	
-	@Column(name="ADDRESS")
 	private String city;
-	
-	@Column(name="SALARY")
 	private double salary;
 
 	public Emp() {
