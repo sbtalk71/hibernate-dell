@@ -1,0 +1,19 @@
+package com.demo.spring;
+
+import com.demo.spring.dao.EmpDao;
+import com.demo.spring.entity.Emp;
+
+public class EmpService {
+
+	private EmpDao dao;
+
+	public void setDao(EmpDao dao) {
+		this.dao = dao;
+	}
+
+	public String registerEmp(int id, String name, String city, double sal) {
+		System.out.println(dao.getClass().getName());
+		String response = dao.save(new Emp(id, name, city, sal));
+		return response;
+	}
+}
