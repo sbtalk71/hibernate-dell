@@ -3,16 +3,16 @@ package com.demo.spring.controllers;
 import java.util.List;
 import java.util.Optional;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.demo.spring.EmpRepository;
@@ -42,13 +42,34 @@ public class EmpRestController {
 	}
 
 	@PostMapping(path = "/emp/save", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.TEXT_PLAIN_VALUE)
-	public ResponseEntity<String> saveEmp(@RequestBody Emp e,HttpServletRequest req) {
-		//System.out.println(req.getParameterMap());
+	public ResponseEntity<String> saveEmp(@RequestBody Emp e) {
+
 		if (repo.existsById(e.getEmpId())) {
 			return ResponseEntity.ok("Emp ALready Exists in database");
 		} else {
 			repo.save(e);
 			return ResponseEntity.ok("Emp saved in database");
+		}
+	}
+
+	@PutMapping(path = "/emp/update", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.TEXT_PLAIN_VALUE)
+	public ResponseEntity<String> updateEmp(@RequestBody Emp e) {
+		if (!repo.existsById(e.getEmpId())) {
+			return ResponseEntity.ok("Emp does not Exist in database");
+		} else {
+			repo.save(e);
+			return ResponseEntity.ok("Emp updated in database");
+		}
+	}
+	
+	@DeleteMapping(path = "/emp/delete", produces = MediaType.TEXT_PLAIN_VALUE)
+	public ResponseEntity<String> deleteEmp(@RequestParam("id")int id) {
+		if (repo.existsById(id)) {
+			repo.deleteById(id);
+			return ResponseEntity.ok("Emp Removed...");
+		} else {
+			
+			return ResponseEntity.ok("Emp not found...");
 		}
 	}
 }
