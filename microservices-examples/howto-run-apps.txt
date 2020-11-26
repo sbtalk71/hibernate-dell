@@ -1,0 +1,6 @@
+1. Run Eureka-server app
+2. Run emp-data-service app
+3. run hr-service app
+
+test using the given url:
+http://localhost:9000/hr/emp/details?id=104
